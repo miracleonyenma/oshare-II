@@ -1,3 +1,5 @@
+// ./server.js
+
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
@@ -57,45 +59,45 @@ app.use("/files", express.static(uploadDir));
 app.get("/api/files", (req, res) => {
   try {
     const files = [];
-    
+
     // Read files from public/files directory
     const publicFilesDir = path.join(__dirname, "public", "files");
     if (fs.existsSync(publicFilesDir)) {
-      fs.readdirSync(publicFilesDir).forEach(file => {
+      fs.readdirSync(publicFilesDir).forEach((file) => {
         // Skip index.html and any hidden files
         if (file === "index.html" || file.startsWith(".")) return;
-        
+
         const filePath = path.join(publicFilesDir, file);
         const stats = fs.statSync(filePath);
-        
+
         if (stats.isFile()) {
           files.push({
             name: file,
             size: stats.size,
-            lastModified: stats.mtime
+            lastModified: stats.mtime,
           });
         }
       });
     }
-    
+
     // Also read files from uploads directory
     if (fs.existsSync(uploadDir)) {
-      fs.readdirSync(uploadDir).forEach(file => {
+      fs.readdirSync(uploadDir).forEach((file) => {
         if (file.startsWith(".")) return; // Skip hidden files
-        
+
         const filePath = path.join(uploadDir, file);
         const stats = fs.statSync(filePath);
-        
+
         if (stats.isFile()) {
           files.push({
             name: file,
             size: stats.size,
-            lastModified: stats.mtime
+            lastModified: stats.mtime,
           });
         }
       });
     }
-    
+
     res.json(files);
   } catch (error) {
     console.error("Error reading files:", error);

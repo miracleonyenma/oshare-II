@@ -1,14 +1,25 @@
 {
-  "name": "o-share",
+  "name": "oshare-ii",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Local network file sharing application with QR code support",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "file-sharing",
+    "local-network",
+    "upload",
+    "qr-code",
+    "express"
+  ],
+  "author": "miracleonyenma",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@untools/ip-url": "^0.0.2",
     "clnk-terminal": "^0.0.1",
