@@ -2,4 +2,6 @@ node_modules/
 uploads/
 .env
 .DS_Store
-public/files
+# Ignore the files directory except for files/index.html
+public/files/*
+!public/files/index.html
